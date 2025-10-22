@@ -1,31 +1,31 @@
 import pandas as pd
 
-sample = pd.read_csv(r"C:\Users\YOUR_USERNAME\OneDrive\Desktop\python practice\sample csv.csv")
+sample = pd.read_csv(r"C:\Users\acer\Downloads\sample.csv")
 
 print("IN CASE OF IMPUTATION:")
 print(sample.Calories.fillna(sample.Calories.mean()))
 
 print("IN CASE OF ORDINAL ENCODING:")
-data = pd.DataFrame({"colours": ["Red", "Yellow", "Blue", "Black", "Red", "Red", "Blue"]})
+data = pd.DataFrame({"subjects": ["Maths", "Chemistry", "Physics", "English", "Maths", "Maths", "Physics"]})
 ordinal_map = {
-    "Red": 11,
-    "Yellow": 22,
-    "Blue": 33,
-    "Black": 44
+    "Maths": 101,
+    "Chemistry": 202,
+    "Physics": 303,
+    "English": 404
 }
-data["encoding"] = data["colours"].replace(ordinal_map)
+data["encoding"] = data["subjects"].replace(ordinal_map)
 print(data)
 
 print("IN CASE OF ONE HOT ENCODING:")
-Red_column = {"Red": 1, "Yellow": 0, "Blue": 0, "Black": 0}
-Yellow_column = {"Red": 0, "Yellow": 1, "Blue": 0, "Black": 0}
-Blue_column = {"Red": 0, "Yellow": 0, "Blue": 1, "Black": 0}
-Black_column = {"Red": 0, "Yellow": 0, "Blue": 0, "Black": 1}
+Maths_column = {"Maths": 1, "Chemistry": 0, "Physics": 0, "English": 0}
+Chemistry_column = {"Maths": 0, "Chemistry": 1, "Physics": 0, "English": 0}
+Physics_column = {"Maths": 0, "Chemistry": 0, "Physics": 1, "English": 0}
+English_column = {"Maths": 0, "Chemistry": 0, "Physics": 0, "English": 1}
 
-data["red OH encoding"] = data["colours"].replace(Red_column)
-data["yellow OH encoding"] = data["colours"].replace(Yellow_column)
-data["blue OH encoding"] = data["colours"].replace(Blue_column)
-data["black OH encoding"] = data["colours"].replace(Black_column)
+data["maths OH encoding"] = data["subjects"].replace(Maths_column)
+data["chemistry OH encoding"] = data["subjects"].replace(Chemistry_column)
+data["physics OH encoding"] = data["subjects"].replace(Physics_column)
+data["english OH encoding"] = data["subjects"].replace(English_column)
 
 del data["encoding"]
 print(data)
